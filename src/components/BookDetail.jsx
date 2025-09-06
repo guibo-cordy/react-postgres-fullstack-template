@@ -33,6 +33,7 @@ function BookDetail({ bookData }) {
         <div className="card">
           <div className="md:flex gap-10">
             <div className="md:w-1/3 lg:w-1/4 flex-shrink-0 mb-8 md:mb-0">
+              voila mon image [test]
               <img
                 src={book.image_url}
                 alt={book.title}
