@@ -14,6 +14,14 @@ function Sidebar({ genres, activeGenre, counts }) {
         >
           All Books
         </Link>
+        <Link
+          to="/"
+          className={
+            activeGenre === null ? "sidebar-link-active" : "sidebar-link"
+          }
+        >
+          chart demo (vide)
+        </Link>
 
         <div className="sidebar-section">
           <div className="sidebar-heading">Genres</div>
