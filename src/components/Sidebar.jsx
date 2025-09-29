@@ -1,10 +1,12 @@
 import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
 
 function Sidebar({ genres, activeGenre, counts }) {
+  const { t } = useTranslation();
   return (
     <aside className="sidebar">
       <div className="sidebar-title">Library</div>
-
+      <div>{t("bonjour")}</div>
       <nav className="sidebar-nav">
         <Link
           to="/"
