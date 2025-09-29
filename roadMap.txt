@@ -1,0 +1,30 @@
+dev part :
+  - create random dev data
+  - table
+  - search
+  - multi lang
+  - graphiques views :
+    - % in each sub race part
+    -
+
+components : 
+Input search component : 
+  - auto completion
+  - input : array off object
+  - output : a selected object
+  - place holder multi lang
+
+Athelet picture card event :
+  - custom picture for an event (display GPX or montagne drawing for cycling)
+  - many sub customisation, add custom name, add picture from phone, add comment ...
+  - add dynamique chart in althete card
+
+admin mode :
+  - update data for a race
+  - import format
+    - savoir quel format
+
+business work before a race :
+  - type of race
+  - content fo page
+

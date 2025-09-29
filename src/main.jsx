@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import "./index.css";
 import App from "./App.jsx";
+import './lib/multiLang/i18n'
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
