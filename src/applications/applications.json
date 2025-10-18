@@ -8,5 +8,10 @@
     "key": "tri",
     "path": "/triathlon",
     "label": "Triathlon"
+  },
+  {
+    "key": "chart",
+    "path": "/chart",
+    "label": "chart exemple"
   }
 ]

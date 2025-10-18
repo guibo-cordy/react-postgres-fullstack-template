@@ -7,6 +7,7 @@ import Mainframe from './components/Mainframe';
 import './lib/multiLang/i18n'
 import AppTrail from "./applications/Trail/AppTrail.jsx";
 import AppTriathlon from "./applications/triathlon/AppTriathlon.jsx";
+import DemoChart from "./applications/triathlon/DemoChart.jsx";
 import { ThemeProvider } from './layout/ThemeContext';
 import './layout/layout.css';
 
@@ -18,6 +19,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/" element={<Mainframe />} />
           <Route path="/trail" element={<AppTrail />} />
           <Route path="/triathlon" element={<AppTriathlon />} />
+          <Route path="/chart" element={<DemoChart />} />
           <Route path="/genre/:genreId" element={<App />} />
           <Route path="/book/:bookId" element={<App />} />
         </Routes>
