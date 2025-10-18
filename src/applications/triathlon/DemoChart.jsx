@@ -1,15 +1,20 @@
-import React, { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from "react-router";
 import { Button } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
 import Chart from 'react-apexcharts';
 import { ThemeContext, dbthemes } from '../../layout/ThemeContext';
+import { defaultModel, generateDummyData } from '../../lib/dummy-data-utils'
+import { groupDurationsByPercentile } from '../../lib/data-utils'
 
 function DemoChart() {
   const navigate = useNavigate();
   const { theme, upadateTheme } = useContext(ThemeContext);
+  const [data, setData] = useState([]);
+  const [chartCats, setChartCats] = useState([]);
+  const [chartSeries, setChartSeries] = useState([]);
 
-  const options = {
+  const defaultOptions = {
     chart: {
       type: 'line',
       zoom: { enabled: false },
@@ -19,10 +24,10 @@ function DemoChart() {
       curve: 'smooth'
     },
     xaxis: {
-      categories: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']
+      categories: chartCats,
     },
     theme: {
-      mode: 'dark'
+      mode: theme
     },
     responsive: [{
       breakpoint: 768,
@@ -32,10 +37,10 @@ function DemoChart() {
     }]
   };
 
-  const series = [
+  const defaultSeries = [
     {
-      name: 'Activité',
-      data: [10, 41, 35, 51, 49, 62, 69]
+      name: 'percent',
+      data:  [10, 41, 35, 51, 49, 62, 69],
     }
   ];
 
@@ -43,6 +48,26 @@ function DemoChart() {
   const handleGoBackHome = () => {
     navigate('/');
   }
+
+  const handleGenerateDummyData = () => {
+    const newData = generateDummyData(defaultModel);
+    setData(newData);
+  }
+
+
+  useEffect(() => {
+    handleGenerateDummyData();
+  }, []);
+
+  useEffect(() => {
+    if (data.length > 0) { // for log
+      console.log(JSON.stringify(data[0]));
+    }
+    const res = groupDurationsByPercentile(data.map((d) => d.duration));
+    console.log(res);
+    setChartCats(res.map((r) => r.categories));
+    setChartSeries([{name: 'percent', data: res.map((r) => r.count)}]);
+  }, [data])
 
   return (
     <div className="container-mainframe">
@@ -62,8 +87,37 @@ function DemoChart() {
           </div>
       </div>
       <div className="mainframe-content">
+        <Button
+          onClick={() => handleGenerateDummyData()}
+        >Generate random data</Button>
         <div style={{ maxWidth: '100%', margin: 'auto' }}>
-          <Chart options={options} series={series} type="line" height={300} />
+          <Chart
+            options={{
+                chart: {
+                  type: 'line',
+                  zoom: { enabled: false },
+                  toolbar: { show: false }
+                },
+                stroke: {
+                  curve: 'smooth'
+                },
+                xaxis: {
+                  categories: chartCats,
+                },
+                theme: {
+                  mode: 'dark'
+                },
+                responsive: [{
+                  breakpoint: 768,
+                  options: {
+                    chart: { width: '100%' }
+                  }
+                }]
+              }}
+            series={chartSeries}
+            type="line"
+            height={300}
+          />
         </div>
 
       </div>

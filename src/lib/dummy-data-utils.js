@@ -9,20 +9,39 @@ const getRandomValuesFromEnum = (values) => values[getRandomInt(getRandomInt(val
 const defaultModel = {
   keys: [
     {name: 'dos', label: 'dossard', unic: true, type: 'number'},
-    {name: 'name', label: 'dossard', unic: true, type: 'string'},
-    {name: 'famillyName', label: 'dossard', unic: true, type: 'string'},
-    {name: 'time', label: 'time', unic: true, type: 'time'},
+    {name: 'name', label: 'dossard', unic: false, type: 'string'},
+    {name: 'famillyName', label: 'dossard', unic: false, type: 'string'},
+    {name: 'cat', label: 'cathegorie', unic: false, type: 'string'},
+    {name: 'time', label: 'time', unic: false, type: 'time'},
   ]
 }
 
+const dummyCategoris = Array(5).fill('').map((v,i) => 'MF'.split``.map((s) => s + '_' + i)).flat()
 const dummyNames = 'GABRIEL RAPHAËL LOUIS LÉO NOAH ARTHUR ADAM JULES'.split` `
-const dummyFamillyNames = 'Lero Petit Durand Dubois MOreau Lefevre Mercier Aubry Garnier Perrin Blanc Muller'.split` `
+const dummyFamillyNames = 'Leroy Petit Durand Dubois MOreau Lefevre Mercier Aubry Garnier Perrin Blanc Muller'.split` `
+
+function generateAthleteTimes(startTime = "16:00:00", minSeconds = 3600, maxSeconds = 14400) {
+  // Convert startTime to a Date object
+  const [hours, minutes, seconds] = startTime.split(":").map(Number);
+  const startDate = new Date();
+  startDate.setHours(hours, minutes, seconds, 0);
+  
+  const duration = Math.floor(Math.random() * (maxSeconds - minSeconds + 1)) + minSeconds;
+  const arrivalDate = new Date(startDate.getTime() + duration * 1000);
+
+  return {
+    startTime: startDate.toTimeString().split(" ")[0],
+    duration: new Date(duration * 1000).toISOString().substr(11, 8),
+    arrivalTime: arrivalDate.toTimeString().split(" ")[0]
+  }
+}
+
 
 const generateDummyData = (model, numOfData = 200) => {
   // need to check model validity
   const res = Array(numOfData).fill('').map((v, i) => {
     const line = {};
-    model.forEach((att) => {
+    model.keys.forEach((att) => {
       if (att.unic) {
         line[att.name] = i;
       }
@@ -32,10 +51,15 @@ const generateDummyData = (model, numOfData = 200) => {
       if (att.name === 'famillyName') {
         line[att.name] = getRandomValuesFromEnum(dummyFamillyNames);
       }
-      if (att.name === 'time') {
-        line[att.name] = getRandomInt(1000);
+      if (att.name === 'dos') {
+        line[att.name] = getRandomValuesFromEnum(dummyCategoris);
       }
+      const times = generateAthleteTimes();
+      Object.entries(times).forEach((e) => {
+        line[e[0]] = e[1];
+      })
     })
+    return line;
   });
 
   return res;
