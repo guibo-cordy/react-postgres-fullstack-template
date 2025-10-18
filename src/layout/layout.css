@@ -38,6 +38,10 @@ body {
   --border-color: #000000;
   --border-color-hover: var(--color-hover);
   --border-size: 0.1em;
+
+  /* table */
+  --table-line-bg-color: #fff;
+  --table-line-txt-color: #5a5a5a;
 }
 
 [data-theme='dark'] {
@@ -46,7 +50,7 @@ body {
   
   --txt-color: rgb(255, 255, 255);
   --color-hover: #090909;
-  --elt-bg-color: #ffffff;
+  --elt-bg-color: #bcbcbc;
   --elt-txt-color: #030303;
 
   /* button */
@@ -59,6 +63,10 @@ body {
   --border-color: #ffffff;
   --border-color-hover: var(--color-hover);
   --border-size: 0.1em;
+
+  /* table */
+  --table-line-bg-color: #6253534a;
+  --table-line-txt-color: #d11313;
 }
 
 .container-mainframe {
@@ -121,6 +129,43 @@ body {
 .ant-btn:hover span {
   color: var(--button-txt-color-hover) !important;
   transition: color 0.3s ease;
+}
+
+/* ant table */
+
+.custom-table-header {
+  background-color: #2a2a2a; /* fond sombre */
+  color: #00bcd4;            /* texte coloré */
+  border-bottom: 4px solid #d10000;
+}
+
+.custom-table-row {
+  background-color: var(--table-line-bg-color);
+  color: var(--table-line-txt-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.ant-table-row.custom-table-row:hover td {
+  background-color: #06bc15 !important;
+  color: #fa00cc !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* .thead {
+  background: #f70909;
+}
+
+.ant-table-tbody {
+  background: var(--button-bg-color); 
+}
+
+
+.ant-table-row:hover {
+  background: #f00 !important;
+} */
+
+.ant-table-cell div {
+  color: var(--elt-txt-color);
 }
 
 div, h1, h2, h3, h4, h5, p {

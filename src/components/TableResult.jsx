@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Table } from 'antd';
 
 const columns = [
@@ -6,17 +6,19 @@ const columns = [
     title: 'Name',
     dataIndex: 'name',
     key: 'name',
-    render: text => <a>{text}</a>,
+    render: text => <div>{text}</div>,
   },
   {
     title: 'Age',
     dataIndex: 'age',
     key: 'age',
+    render: text => <div>{text}</div>,
   },
   {
     title: 'Address',
     dataIndex: 'address',
     key: 'address',
+    render: text => <div>{text}</div>,
   }
 ];
 const data = [
@@ -43,11 +45,42 @@ const data = [
   },
 ];
 
-function TableResult ({name}) {
+function TableResult ({tableName, data}) {
+  const [columns, setColumns] = useState([]);
+  const [dataTable, setDataTable] = useState([]);
+
+  useEffect(() => {
+    if (data.length > 0) {
+      const newCol = Object.entries(data[0]).map((e) => ({
+          title: e[0],
+          dataIndex: e[0],
+          key: e[0],
+          render: (text) => <div>{text}</div>,
+      }));
+      setColumns(newCol);
+      const newDataTable = data.map((d, i) => ({
+        ...d,
+        key: i
+      }));
+      setDataTable(newDataTable);
+    }
+  }, [data]);
+
   return (
     <div>
-      <div>{name}</div>
-      <Table columns={columns} dataSource={data} />
+      <div>{tableName}</div>
+      <Table
+        columns={columns}
+        dataSource={dataTable}
+        rowClassName={() => 'custom-table-row'}
+        
+        components={{
+          header: {
+            wrapper: (props) => <thead {...props} className="custom-table-header" />
+        }
+      }}
+
+      />
     </div>
   );
 }

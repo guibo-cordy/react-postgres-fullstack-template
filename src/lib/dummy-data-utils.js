@@ -9,9 +9,9 @@ const getRandomValuesFromEnum = (values) => values[getRandomInt(getRandomInt(val
 const defaultModel = {
   keys: [
     {name: 'dos', label: 'dossard', unic: true, type: 'number'},
+    {name: 'cat', label: 'cathegorie', unic: false, type: 'string'},
     {name: 'name', label: 'dossard', unic: false, type: 'string'},
     {name: 'famillyName', label: 'dossard', unic: false, type: 'string'},
-    {name: 'cat', label: 'cathegorie', unic: false, type: 'string'},
     {name: 'time', label: 'time', unic: false, type: 'time'},
   ]
 }
@@ -45,14 +45,14 @@ const generateDummyData = (model, numOfData = 200) => {
       if (att.unic) {
         line[att.name] = i;
       }
+      if (att.name === 'cat') {
+        line[att.name] = getRandomValuesFromEnum(dummyCategoris);
+      }
       if (att.name === 'name') {
         line[att.name] = getRandomValuesFromEnum(dummyNames);
       }
       if (att.name === 'famillyName') {
         line[att.name] = getRandomValuesFromEnum(dummyFamillyNames);
-      }
-      if (att.name === 'dos') {
-        line[att.name] = getRandomValuesFromEnum(dummyCategoris);
       }
       const times = generateAthleteTimes();
       Object.entries(times).forEach((e) => {

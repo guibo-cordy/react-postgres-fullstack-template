@@ -15,7 +15,7 @@ function AppTriathlon() {
   return (
     <div className="container-mainframe">
       <div className="mainframe-header">
-          <div>Trail application</div>
+          <div>Combo chart and table</div>
           <div className='button-group'>
             <Button
               onClick={() => handleGoBackHome()}
@@ -35,7 +35,7 @@ function AppTriathlon() {
         <Button
         onClick={() => handleGoBackHome()}
         >Go back home</Button>
-        <TableResult name="it's a test" />
+        <TableResult data={[{name: "toto"}, {name:'titi'}]} tableName="it's a moisi table" />
       </div>
       <div className="mainframe-footer">
         <div>{'made by GBO-dev corp'}</div>
