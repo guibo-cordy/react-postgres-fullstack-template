@@ -5,7 +5,8 @@ import "./index.css";
 import App from "./App.jsx";
 import Mainframe from './components/Mainframe';
 import './lib/multiLang/i18n'
-import ApplicationTrail from "./components/ApplicationTrail.jsx";
+import AppTrail from "./applications/Trail/AppTrail.jsx";
+import AppTriathlon from "./applications/triathlon/AppTriathlon.jsx";
 import { ThemeProvider } from './layout/ThemeContext';
 import './layout/layout.css';
 
@@ -15,7 +16,8 @@ createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Mainframe />} />
-          <Route path="/trail" element={<ApplicationTrail />} />
+          <Route path="/trail" element={<AppTrail />} />
+          <Route path="/triathlon" element={<AppTriathlon />} />
           <Route path="/genre/:genreId" element={<App />} />
           <Route path="/book/:bookId" element={<App />} />
         </Routes>

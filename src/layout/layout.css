@@ -1,55 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+
+:root {
+  color:rgb(0, 0, 0);
+  height: 100vh;
+  width: 100vw;
+  
+  --mainframe-height-header: 10vh;
+  --mainframe-height-footer: 5vh;
+  
+  --font-main: 'Inter', sans-serif;
+}
+
 body {
   height: 100vh;
   width: 100%;
   min-height: 100vh;
   overflow: auto;
-}
-
-:root {
-  color:blueviolet;
-  height: 100vh;
-  width: 100vw;
-
-  --mainframe-height-footer: 10vh;
-  --mainframe-height-header: 10vh;
+  font-family: var(--font-main);
 }
 
 [data-theme='light'] {
+  --bg-color: #ffffff;
+  --bg-ban-color: linear-gradient(135deg, #dedede, #dddddd);;
+
   --txt-color: rgb(0, 0, 0);
-  --bg-color: #ed86868d;
+  --color-hover: #2323ff;
+  --elt-bg-color: #bcbcbc;
+
+  /* button */
+  --button-bg-color: var(--elt-bg-color);
+  --button-tkt-color: var(--txt-color);
+  --button-bg-color-hover: var(--elt-bg-color);
+  --button-txt-color-hover: var(--color-hover);
+
+  /* border */
+  --border-color: #000000;
+  --border-color-hover: var(--color-hover);
+  --border-size: 0.1em;
 }
 
 [data-theme='dark'] {
+  --bg-color: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  --bg-ban-color: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  
   --txt-color: rgb(255, 255, 255);
-  --bg-color: linear-gradient(135deg, #0f2027, #203a43, #2c5364);;
+  --color-hover: #090909;
+  --elt-bg-color: #ffffff;
+  --elt-txt-color: #030303;
+
+  /* button */
+  --button-bg-color: var(--elt-bg-color);
+  --button-tkt-color: var(--elt-txt-color);
+  --button-bg-color-hover: var(--elt-bg-color);
+  --button-txt-color-hover: var(--color-hover);
+  
+  /* border */
+  --border-color: #ffffff;
+  --border-color-hover: var(--color-hover);
+  --border-size: 0.1em;
 }
 
 .container-mainframe {
   background: var(--bg-color);
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 
 .mainframe-header {
   height: var(--mainframe-height-header);
-  background: var(--bg-color);
+  background: var(--bg-ban-color);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
-  /* padding: 0px 20px 0px 20px; */
-  padding: 2em;
+  padding: 20px;
+  border-bottom: var(--border-size) solid var(--border-color);
 }
 
 .mainframe-content {
+  background: var(--bg-color);
   overflow-y: auto;
-  padding: 10px;
+  flex-grow: 1;
+  height: calc(100vh - var(--mainframe-height-header) - var(--mainframe-height-footer));
+  /* padding: 10px; */
 }
 
 .mainframe-footer {
-  background: var(--bg-color);
+  width: 100%;
   height: var(--mainframe-height-footer);
+  background: var(--bg-ban-color);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -57,7 +98,29 @@ body {
   flex-shrink: 0;
   padding: 10px;
   /* max-width: 100vh; */
-  width: 100%;
+  border-top: var(--border-size) solid var(--border-color);
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.ant-btn {
+  color: var(--button-tkt-color) !important;
+  background: var(--button-bg-color) !important;
+  border-color: var(--border-color);
+}
+.ant-btn:hover {
+  background: var(--button-bg-color-hover) !important;
+  border-color: var(--border-color-hover) !important;
+}
+.ant-btn:hover span {
+  color: var(--button-txt-color-hover) !important;
+  transition: color 0.3s ease;
 }
 
 div, h1, h2, h3, h4, h5, p {
