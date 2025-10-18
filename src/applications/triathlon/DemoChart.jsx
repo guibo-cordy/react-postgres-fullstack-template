@@ -4,6 +4,7 @@ import { Button } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
 import Chart from 'react-apexcharts';
 import { ThemeContext, dbthemes } from '../../layout/ThemeContext';
+import TableResult from '../../components/TableResult';
 import { defaultModel, generateDummyData } from '../../lib/dummy-data-utils'
 import { groupDurationsByPercentile } from '../../lib/data-utils'
 
@@ -13,37 +14,6 @@ function DemoChart() {
   const [data, setData] = useState([]);
   const [chartCats, setChartCats] = useState([]);
   const [chartSeries, setChartSeries] = useState([]);
-
-  const defaultOptions = {
-    chart: {
-      type: 'line',
-      zoom: { enabled: false },
-      toolbar: { show: false }
-    },
-    stroke: {
-      curve: 'smooth'
-    },
-    xaxis: {
-      categories: chartCats,
-    },
-    theme: {
-      mode: theme
-    },
-    responsive: [{
-      breakpoint: 768,
-      options: {
-        chart: { width: '100%' }
-      }
-    }]
-  };
-
-  const defaultSeries = [
-    {
-      name: 'percent',
-      data:  [10, 41, 35, 51, 49, 62, 69],
-    }
-  ];
-
 
   const handleGoBackHome = () => {
     navigate('/');
@@ -89,7 +59,15 @@ function DemoChart() {
       <div className="mainframe-content">
         <Button
           onClick={() => handleGenerateDummyData()}
-        >Generate random data</Button>
+        >
+          Generate random data
+        </Button>
+        <div style={{ maxWidth: '100%', margin: 'auto' }}>
+          <TableResult
+            data={data}
+            tableName="my first random table"
+          />
+        </div>
         <div style={{ maxWidth: '100%', margin: 'auto' }}>
           <Chart
             options={{
