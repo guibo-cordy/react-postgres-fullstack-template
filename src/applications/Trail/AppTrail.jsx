@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { Button } from 'antd';
 
-function ApplicationTrail() {
+function AppTrail() {
   const navigate = useNavigate();
 
     const handleGoBackHome = () => {
@@ -17,4 +17,4 @@ function ApplicationTrail() {
   )
 }
 
-export default ApplicationTrail;
+export default AppTrail;

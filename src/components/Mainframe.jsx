@@ -1,47 +1,51 @@
 import { useContext } from 'react';
 import { useNavigate, useParams } from "react-router";
-import { Button, Menu } from 'antd';
+import { Button } from 'antd';
 import { ThemeContext, dbthemes } from '../layout/ThemeContext';
+import apps from '../applications/applications.json';
 
 function Mainframe() {
   const navigate = useNavigate();
   const { theme, upadateTheme } = useContext(ThemeContext);
   const params = useParams();
 
-  const handleTestNavigate = () => {
+  const handleClickNavigateToApp = (app) => {
+    console.log(app);
     console.log(params);
-    navigate('/trail');
-  }
-  
-  const handleClick = (e) => {
-    console.log('menu click', e);
-    upadateTheme(e.key);
+    if (app?.path) {
+      navigate(app.path);
+    }
   }
 
   return (
   <div className="container-mainframe">
     <div className="mainframe-header">
-      <h1>Welcom to gbodev master page</h1>
-      <Menu
-        onClick={handleClick}
-        style={{ width: '5em' }}
-        mode="inline"
-        items={dbthemes}
-      />
+        <div>Welcom to the web master page</div>
+        <div className='button-group'>
+          <Button
+            onClick={() => upadateTheme(dbthemes.find((t) => t.key !== theme).key)}
+            >
+              {dbthemes.find((t) => t.key !== theme).icon}
+          </Button>
+        </div>
     </div>
     <div className="mainframe-content">
-      {"azertyuiopmlkjnhbgvfcdxsqw".split``.map((c) => (<div key={c}>{c}</div>))}
-      <div>my div</div>
-      <Button
-        onClick={() => handleTestNavigate()}
-      >
-        Test navigate
-      </Button>
-      <div>end mainframe content</div>
+      {/* {"azertyuiopmlkjnhbgvfcdxsqw".split``.map((c) => (<div key={c}>{c}</div>))} */}
+      <div>All applications</div>
+      <div className='button-group'>
+        {apps.map((app) => (
+        <Button
+          key={app.key}
+          onClick={() => handleClickNavigateToApp(app)}
+        >
+          {app?.label ?? app.key }
+        </Button>
+        
+      )) }
+      </div>
     </div>
     <div className="mainframe-footer">
-        <p>{'made by GBO-dev corp'}</p>
-        <p>{'made by GBO-dev corp'}</p>
+        <div>{'made by GBO-dev corp'}</div>
       </div>
   </div>
   );

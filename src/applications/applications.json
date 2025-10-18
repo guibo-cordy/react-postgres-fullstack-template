@@ -1,0 +1,12 @@
+[
+  {
+    "key": "trail",
+    "path": "/trail",
+    "label": "Trail"
+  },
+  {
+    "key": "tri",
+    "path": "/triathlon",
+    "label": "Triathlon"
+  }
+]
