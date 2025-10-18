@@ -5,6 +5,7 @@ import { HomeOutlined } from '@ant-design/icons';
 import Chart from 'react-apexcharts';
 import { ThemeContext, dbthemes } from '../../layout/ThemeContext';
 import TableResult from '../../components/TableResult';
+import SearchAthlete from '../../components/SearchAthlete';
 import { defaultModel, generateDummyData } from '../../lib/dummy-data-utils'
 import { groupDurationsByPercentile } from '../../lib/data-utils'
 
@@ -57,18 +58,21 @@ function DemoChart() {
           </div>
       </div>
       <div className="mainframe-content">
-        <Button
-          onClick={() => handleGenerateDummyData()}
-        >
-          Generate random data
-        </Button>
+        <div className='button-group'>
+          <Button
+            onClick={() => handleGenerateDummyData()}
+            >
+            Generate random data
+          </Button>
+          <SearchAthlete data={data} setAthlete={(e) => console.log(e)} />
+        </div>
         <div style={{ maxWidth: '100%', margin: 'auto' }}>
           <TableResult
             data={data}
             tableName="my first random table"
           />
         </div>
-        <div style={{ maxWidth: '100%', margin: 'auto' }}>
+        <div style={{ xidth: '300px', margin: 'auto' }}>
           <Chart
             options={{
                 chart: {
