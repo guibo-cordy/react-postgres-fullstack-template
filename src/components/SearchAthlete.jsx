@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { AutoComplete } from 'antd';
-function SearchAthlete ({data, setAthlete}) {
+function SearchAthlete ({data, provideAthlete}) {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
     if (data.length > 0) {
       // set initial options
       
-    setOptions(data.map((item) => ({
-      value: item.dos,
-      label: `${item.name} (Dossard ${item.dos})`
-    })));
+      setOptions(data.map((item) => ({
+        value: item.dos,
+        label: `${item.name} ${item.famillyName} (Dossard ${item.dos})`
+      })));
 
     }
   }, [data]);
@@ -19,7 +19,7 @@ function SearchAthlete ({data, setAthlete}) {
     console.log('want filter on value', value);
     const filtered = data.filter((item) =>
       item.name.toLowerCase().includes(value.toLowerCase()) ||
-      item.dos.includes(value)
+      item.dos.toString().includes(value)
     );
 
     setOptions(filtered.map((item) => ({
@@ -28,17 +28,19 @@ function SearchAthlete ({data, setAthlete}) {
     })));
   }
 
-  const handleSelectAthlete = (value) => {
-    setAthlete(data.find((d) => d.dos === value))
+  const handleSelectAthlete = (value, a) => {
+    console.log('handleSelectAthlete', value);
+    console.log('handleSelectAthlete', a);
+    provideAthlete(data.find((d) => d.dos === value))
   }
 
   return (
     <div>
       <AutoComplete
         options={options}
-        style={{ marginBottom: 16, width: 300 }}
+        style={{width: 300 }}
         onSearch={handleSearch}
-        onSelect={handleSelectAthlete}
+        onSelect={(v, a) => handleSelectAthlete(v, a)}
         placeholder="doss name fammilyname"
         allowClear
       />

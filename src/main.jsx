@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { createContext, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import "./index.css";
@@ -10,20 +10,23 @@ import AppTriathlon from "./applications/triathlon/AppTriathlon.jsx";
 import DemoChart from "./applications/triathlon/DemoChart.jsx";
 import { ThemeProvider } from './layout/ThemeContext';
 import './layout/layout.css';
+import { DataModelProvider } from "./dataModels/dataModelContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ThemeProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Mainframe />} />
-          <Route path="/trail" element={<AppTrail />} />
-          <Route path="/triathlon" element={<AppTriathlon />} />
-          <Route path="/chart" element={<DemoChart />} />
-          <Route path="/genre/:genreId" element={<App />} />
-          <Route path="/book/:bookId" element={<App />} />
-        </Routes>
-      </BrowserRouter>
+      <DataModelProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Mainframe />} />
+            <Route path="/trail" element={<AppTrail />} />
+            <Route path="/triathlon" element={<AppTriathlon />} />
+            <Route path="/chart" element={<DemoChart />} />
+            <Route path="/genre/:genreId" element={<App />} />
+            <Route path="/book/:bookId" element={<App />} />
+          </Routes>
+        </BrowserRouter>
+      </DataModelProvider>
     </ThemeProvider>
   </StrictMode>,
 );
