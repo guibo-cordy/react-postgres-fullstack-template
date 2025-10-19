@@ -1,7 +1,7 @@
 // ThemeContext.js
 import { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { getCountryFlagFromCode } from '../lib/data-utils';
+// import { getCountryFlagFromCode } from '../lib/data-utils';
 
 const DataModelContext = createContext();
 
@@ -21,9 +21,14 @@ const DataModelContext = createContext();
 function DataModelProvider({ children }) {
   const [dataModel, setDataModel] = useState({});
   const [columns, setColumns] = useState([]);
+  const [attId, setAttId] = useState("name");
 
   const renderLibrairy = {
-    flag: (value) => (<span>{getCountryFlagFromCode(value)}</span>),
+    flag: (value) => {
+        const url = `https://flagcdn.com/24x18/${value.toLowerCase()}.png`;
+        return <img src={url} alt={`Flag of ${value}`} width="24" height="18" />;
+      // return (<span>{getCountryFlagFromCode(value)}</span>)
+    },
     time: (value) => (<div>{`T:${value}`}</div>),
     link: (value) => (<a>{`https:${value}`}</a>),
     default: (value) => (<div>{value}</div>)
@@ -36,11 +41,12 @@ function DataModelProvider({ children }) {
 
   useEffect(() => {
     if (dataModel.columns) {
+      setAttId(dataModel?.columns?.find((c) => c.role === 'id'));
       const newCols = dataModel.columns.map((col) => ({
         title: col.key,
         dataIndex: col.key,
         key: col.key,
-        render: col?.render ?? renderLibrairy.default,
+        render: renderLibrairy?.[col?.render] ?? renderLibrairy.default,
       }));
       setColumns(newCols);
     }
@@ -48,7 +54,7 @@ function DataModelProvider({ children }) {
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <DataModelContext.Provider value={{ columns, upadateDataModel }}>
+    <DataModelContext.Provider value={{ columns, attId, upadateDataModel }}>
       {children}
     </DataModelContext.Provider>
   );

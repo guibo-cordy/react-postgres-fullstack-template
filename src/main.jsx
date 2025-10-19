@@ -1,4 +1,4 @@
-import { createContext, StrictMode } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import "./index.css";
@@ -10,7 +10,7 @@ import AppTriathlon from "./applications/triathlon/AppTriathlon.jsx";
 import DemoChart from "./applications/triathlon/DemoChart.jsx";
 import { ThemeProvider } from './layout/ThemeContext';
 import './layout/layout.css';
-import { DataModelProvider } from "./dataModels/dataModelContext.jsx";
+import { DataModelProvider } from './components/DataModelContext.jsx';
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

@@ -6,7 +6,7 @@ const getRandomChar = () => {
 const getRandomInt = (maxInteger) => Math.floor(Math.random() * maxInteger);
 const getRandomValuesFromEnum = (values) => values[getRandomInt(getRandomInt(values.length + 1))];
 
-const defaultModel = {
+const defaultModel = { // deprecated
   keys: [
     {name: 'dos', label: 'dossard', unic: true, type: 'number'},
     {name: 'cat', label: 'cathegorie', unic: false, type: 'string'},
@@ -18,8 +18,8 @@ const defaultModel = {
 
 const dummyCategoris = Array(5).fill('').map((v,i) => 'MF'.split``.map((s) => s + '_' + i)).flat()
 const dummyNames = 'MICHEL MICHELINE GILLES JEAN GUILLAUME GABRIEL RAPHAËL LOUIS LÉO NOAH ARTHUR ADAM JULES'.split` `
-const dummyFamillyNames = 'Leroy Petit Durand Dubois MOreau Lefevre Mercier Aubry Garnier Perrin Blanc Muller'.split` `
-const dummyCountry = "fr en es de it pt nl ru zh ja ko ar".split` `
+const dummyFamillyNames = 'Leroy Petit Durand Dubois Moreau Lefevre Mercier Aubry Garnier Perrin Blanc Muller'.split` `
+const dummyCountry = "fr es de it pt nl".split` `
 
 function generateAthleteTimes(startTime = "16:00:00", minSeconds = 3600, maxSeconds = 14400) {
   // Convert startTime to a Date object
