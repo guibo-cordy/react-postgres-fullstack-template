@@ -4,13 +4,13 @@ import { Button } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
 import Chart from 'react-apexcharts';
 import { ThemeContext, dbthemes } from '../../layout/ThemeContext';
-import { DataModelContext } from '../../dataModels/DataModelContext';
-import defautlDm from '../../dataModels/default.json';
+import { DataModelContext } from '../../components/DataModelContext';
+import defautlDm from '../../lib/default.json';
 import TableResult from '../../components/TableResult';
 import SearchAthlete from '../../components/SearchAthlete';
 import AtheleteCard from '../../components/AtheleteCard';
 import { generateDummyData } from '../../lib/dummy-data-utils'
-import { groupDurationsByPercentile, getCountryFlagFromCode } from '../../lib/data-utils'
+import { groupDurationsByPercentile } from '../../lib/data-utils'
 
 function DemoChart() {
   const navigate = useNavigate();
@@ -77,7 +77,6 @@ function DemoChart() {
     <div className="container-mainframe">
       <div className="mainframe-header">
           <div>WIP search & table & chart</div>
-          <span>{getCountryFlagFromCode('fr')}</span>
           <div className='button-group'>
             <Button
               onClick={() => handleGoBackHome()}

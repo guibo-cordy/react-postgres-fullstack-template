@@ -1,40 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Table } from 'antd';
-
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    render: text => <div>{text}</div>,
-  }
-];
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  }
-];
+import { DataModelContext } from '../components/DataModelContext';
 
 function TableResult({tableName, data}) {
-  const [columns, setColumns] = useState([]);
   const [dataTable, setDataTable] = useState([]);
+  const { columns, attId } = useContext(DataModelContext);
 
   useEffect(() => {
     if (data.length > 0) {
-      const newCol = Object.entries(data[0]).map((e) => ({
-          title: e[0],
-          dataIndex: e[0],
-          key: e[0],
-          render: (text) => <div>{text}</div>,
-      }));
-      setColumns(newCol);
-      const newDataTable = data.map((d, i) => ({
+      const newDataTable = data.map((d) => ({
         ...d,
-        key: i
+        key: d[attId?.key]
       }));
       setDataTable(newDataTable);
     }

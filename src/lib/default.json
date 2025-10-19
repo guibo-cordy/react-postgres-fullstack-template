@@ -1,0 +1,12 @@
+{
+  "columns": [
+    { "role": "id", "positirolePositionon": 0, "key": "dos", "importName": "dos" },
+    { "role": "name", "rolePosition": 0, "key": "name", "importName": "prenom" },
+    { "role": "name", "rolePosition": 1, "key": "famillyName", "importName": "nom" },
+    { "role": "name", "rolePosition": 2, "key": "cat", "importName": "cat" },
+    { "role": "name", "rolePosition": 3, "key": "country", "importName": "country", "render": "flag" },
+    { "role": "time", "rolePosition": 0, "key": "startTime", "importName": "startTime", "render": "time"},
+    { "role": "time", "rolePosition": 1, "key": "duration", "importName": "duration", "render": "time"},
+    { "role": "time", "rolePosition": 2, "key": "arrivalTime", "importName": "arrivalTime", "render": "time"}
+  ]
+}
