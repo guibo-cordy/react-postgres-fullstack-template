@@ -1,13 +1,7 @@
-import MyCustoComponent from "./MyCustoComponent";
-
 function BookCard({ book, onClick }) {
   return (
     <div className="book-card cursor-pointer" onClick={onClick}>
       <div className="book-card-image">
-        <MyCustoComponent
-          name="hey"
-          subName="you"
-        />
         <img
           src={book.image_url}
           alt={book.title}

@@ -15,7 +15,7 @@ function AppTriathlon() {
   return (
     <div className="container-mainframe">
       <div className="mainframe-header">
-          <div>Combo chart and table</div>
+          <div>App tri WIP</div>
           <div className='button-group'>
             <Button
               onClick={() => handleGoBackHome()}

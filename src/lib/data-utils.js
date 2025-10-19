@@ -39,4 +39,21 @@ function groupDurationsByPercentile(durations) {
 }
 
 
-export { groupDurationsByPercentile, parseDurationToSeconds }
+const getCountryFlagFromCode = (code) => {
+  const flagEmoji = code
+    .toUpperCase()
+    .split('')
+    .map((char) => String.fromCodePoint(127397 + char.charCodeAt()))
+    .join('');
+  return flagEmoji;
+}
+
+
+// const getCountryFlagFromCodeToTest = (code) => {
+//   const url = `https://flagcdn.com/24x18/${code.toLowerCase()}.png`;
+//   return <img src={url} alt={`Flag of ${code}`} width="24" height="18" />;
+// }
+
+
+
+export { groupDurationsByPercentile, parseDurationToSeconds, getCountryFlagFromCode }

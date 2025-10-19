@@ -7,18 +7,6 @@ const columns = [
     dataIndex: 'name',
     key: 'name',
     render: text => <div>{text}</div>,
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-    render: text => <div>{text}</div>,
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-    render: text => <div>{text}</div>,
   }
 ];
 const data = [
@@ -28,24 +16,10 @@ const data = [
     age: 32,
     address: 'New York No. 1 Lake Park',
     tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
+  }
 ];
 
-function TableResult ({tableName, data}) {
+function TableResult({tableName, data}) {
   const [columns, setColumns] = useState([]);
   const [dataTable, setDataTable] = useState([]);
 

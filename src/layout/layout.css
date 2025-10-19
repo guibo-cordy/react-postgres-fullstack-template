@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
-
 :root {
   color:rgb(0, 0, 0);
   height: 100vh;
@@ -115,6 +114,7 @@ body {
   justify-content: flex-start;
   align-items: center;
   gap: 0.5em;
+  margin: 0.3em;
 }
 
 .ant-btn {
@@ -132,7 +132,6 @@ body {
 }
 
 /* ant table */
-
 .custom-table-header {
   background-color: #2a2a2a; /* fond sombre */
   color: #00bcd4;            /* texte coloré */
@@ -168,6 +167,25 @@ body {
   color: var(--elt-txt-color);
 }
 
+/* ant select dropdown */
+/* .ant-select {
+  margin: 0px;
+} */
+
+.ant-select-dropdown {
+  background: var(--elt-bg-color);
+}
+
+.ant-select-item {
+}
+.ant-select-item-option{
+  /* background: #00bcd4; */
+}
+.ant-select-item-option-content {
+  color:var(--elt-txt-color);
+}
+
 div, h1, h2, h3, h4, h5, p {
   color: var(--txt-color);
+  font-size: 1em;
 }

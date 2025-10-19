@@ -1,0 +1,10 @@
+{
+  "columns": [
+    { "role": "id", "positirolePositionon": 0, "key": "dos", "importName": "dos" },
+    { "role": "name", "rolePosition": 0, "key": "name", "importName": "prenom" },
+    { "role": "name", "rolePosition": 1, "key": "famillyName", "importName": "nom", "render": "link" },
+    { "role": "name", "rolePosition": 2, "key": "cat", "importName": "cat" },
+    { "role": "name", "rolePosition": 3, "key": "country", "importName": "country", "render": "flag" },
+    { "role": "time", "rolePosition": 0, "key": "time1", "importName": "time1", "render": "time"}
+  ]
+}

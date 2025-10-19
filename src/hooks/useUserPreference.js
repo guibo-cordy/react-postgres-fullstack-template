@@ -25,6 +25,7 @@ const useUserPreference = (variableName) => {
         return res;
       }
     } catch (e) {
+      console.error(e);
       return undefined;
     }
     return undefined;
